@@ -6,12 +6,13 @@ from gcsa.recurrence import Recurrence, DAILY, SU, SA, WEEKLY
 
 from beautiful_date import *
 
-excel_file = 'timesheet_tues.xlsx'
+import config
+
+excel_file = config.file_path
 timesheet = pd.read_excel(excel_file)
-print(timesheet)
 
 for i in timesheet.index:    
-    calendar = GoogleCalendar('martin.vayer@gmail.com', credentials_path='client_secret_251214619756-gli6hcekqmbv4rqqju0mn03lao4o5k87.apps.googleusercontent.com.json')
+    calendar = GoogleCalendar(config.email, credentials_path=config.credentials_path)
     start_time = timesheet['time'][i].split('-')[0]
     end_time = timesheet['time'][i].split('-')[1]
 
